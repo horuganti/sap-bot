@@ -9,5 +9,6 @@
   "hubot-redis-brain",
   "hubot-rules",
   "hubot-shipit",
-  "hubot-google-images"
+  "hubot-google-images",
+  "hubot-github-repo-event-notifier"
 ]
