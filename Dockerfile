@@ -4,8 +4,8 @@ MAINTAINER Wantedly Infrastructure Team "dev@wantedly.com"
 ENV HUBOT_NAME sap
 ENV HUBOT_SLACK_TOKEN false
 ENV HUBOT_GOOGLE_CSE_ID false
-ENV HUBOT_GOOGLE_CSE_KEY
-ENV HUBOT_GITHUB_EVENT_NOTIFIER_TYPES=pull_request:synchronized,push
+ENV HUBOT_GOOGLE_CSE_KEY false
+ENV HUBOT_GITHUB_EVENT_NOTIFIER_TYPES pull_request:synchronized,push
 
 COPY . /opt/
 WORKDIR /opt
