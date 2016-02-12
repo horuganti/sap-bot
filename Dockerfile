@@ -3,6 +3,8 @@ MAINTAINER Wantedly Infrastructure Team "dev@wantedly.com"
 
 ENV HUBOT_NAME sap
 ENV HUBOT_SLACK_TOKEN false
+ENV HUBOT_GOOGLE_CSE_ID false
+ENV HUBOT_GOOGLE_CSE_KEY
 
 COPY . /opt/
 WORKDIR /opt
