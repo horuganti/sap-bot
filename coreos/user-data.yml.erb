@@ -79,6 +79,27 @@ coreos:
 
     #     [Install]
     #     WantedBy=multi-user.target
+    - name: redis.service
+      command: start
+      enable: true
+      content: |
+        [Unit]
+        Description=Redis Server
+        After=docker.service
+        Requires=docker.service
+
+        [Service]
+        TimeoutStartSec=0
+        User=core
+        Restart=on-failure
+        ExecStartPre=-/usr/bin/docker kill redis
+        ExecStartPre=-/usr/bin/docker rm redis
+        ExecStartPre=/usr/bin/docker pull redis:latest
+        ExecStart=/usr/bin/docker run --name redis redis
+        ExecStop=/usr/bin/docker stop redis
+
+        [Install]
+        WantedBy=multi-user.target
 write_files:
   - path: /etc/ssh/sshd_config
     permissions: "0600"
