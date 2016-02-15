@@ -100,6 +100,27 @@ coreos:
 
         [Install]
         WantedBy=multi-user.target
+    - name: sap-bot.service
+      command: start
+      enable: true
+      content: |
+        [Unit]
+        Description=Sap bot Server
+        After=docker.service
+        Requires=docker.service
+
+        [Service]
+        TimeoutStartSec=0
+        User=core
+        Restart=on-failure
+        ExecStartPre=-/usr/bin/docker kill sap-bot
+        ExecStartPre=-/usr/bin/docker rm sap-bot
+        ExecStartPre=/usr/bin/docker pull quay.io/wantedly/sap-bot:latest
+        ExecStart=/usr/bin/docker run --name sap-bot --link="redis" -p 8080:8080 -e HUBOT_SLACK_TOKEN=<%= ENV["HUBOT_SLACK_TOKEN"] %> -e HUBOT_GOOGLE_CSE_KEY=<%= ENV["HUBOT_GOOGLE_CSE_KEY"] %> -e HUBOT_GOOGLE_CSE_ID=<%= ENV["HUBOT_GOOGLE_CSE_ID"] %> -v /var/run/docker.sock:/var/run/docker.sock quay.io/wantedly/sap-bot
+        ExecStop=/usr/bin/docker stop sap-bot
+
+        [Install]
+        WantedBy=multi-user.target
 write_files:
   - path: /etc/ssh/sshd_config
     permissions: "0600"
