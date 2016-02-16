@@ -1,1 +1,1 @@
-web: bin/hubot --name sap --adapter slack
+web: bin/hubot --name bot --adapter slack
