@@ -94,8 +94,9 @@ coreos:
         Restart=on-failure
         ExecStartPre=-/usr/bin/docker kill redis
         ExecStartPre=-/usr/bin/docker rm redis
+        ExecStartPre=/usr/bin/mkdir -p /home/core/data
         ExecStartPre=/usr/bin/docker pull redis:latest
-        ExecStart=/usr/bin/docker run --name redis redis
+        ExecStart=/usr/bin/docker run --name redis -p 6379:6379 -v /home/core/data:/data redis
         ExecStop=/usr/bin/docker stop redis
 
         [Install]
