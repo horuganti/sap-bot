@@ -13,7 +13,8 @@ module.exports = (robot) ->
     robot.logger.info "your prefix: #{prefix}"
 
     @exec = require('child_process').exec
-    command = "date"
+
+    command = "docker run --env-file=.env -v /root/.ssh/aws-ec2-tokyo.pem:/root/.ssh/aws-ec2-tokyo.pem quay.io/wantedly/sap:latest #{prefix}"
     res.send "Command: #{command}"
     @exec command, (error, stdout, stderr) ->
       if error?
