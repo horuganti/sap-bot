@@ -117,7 +117,7 @@ coreos:
         ExecStartPre=-/usr/bin/docker kill sap-bot
         ExecStartPre=-/usr/bin/docker rm sap-bot
         ExecStartPre=/usr/bin/docker pull quay.io/wantedly/sap-bot:latest
-        ExecStart=/usr/bin/docker run --name sap-bot --link="redis" -p 8080:8080 -e HUBOT_NAME=<%= ENV["HUBOT_NAME"] %> -e HUBOT_SLACK_TOKEN=<%= ENV["HUBOT_SLACK_TOKEN"] %> -e HUBOT_GOOGLE_CSE_KEY=<%= ENV["HUBOT_GOOGLE_CSE_KEY"] %> -e HUBOT_GOOGLE_CSE_ID=<%= ENV["HUBOT_GOOGLE_CSE_ID"] %> -v /var/run/docker.sock:/var/run/docker.sock quay.io/wantedly/sap-bot
+        ExecStart=/usr/bin/docker run --name sap-bot --link="redis" -p 8080:8080 -e HUBOT_NAME=<%= ENV["HUBOT_NAME"] %> -e HUBOT_SLACK_TOKEN=<%= ENV["HUBOT_SLACK_TOKEN"] %> -e HUBOT_GOOGLE_CSE_KEY=<%= ENV["HUBOT_GOOGLE_CSE_KEY"] %> -e HUBOT_GOOGLE_CSE_ID=<%= ENV["HUBOT_GOOGLE_CSE_ID"] %> -v /var/run/docker.sock:/var/run/docker.sock -v /home/core/.env:/opt/.env -v /home/core/.ssh/private_key:/root/.ssh/aws-ec2-tokyo.pem quay.io/wantedly/sap-bot
         ExecStop=/usr/bin/docker stop sap-bot
 
         [Install]
