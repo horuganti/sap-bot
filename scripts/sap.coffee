@@ -14,7 +14,7 @@ module.exports = (robot) ->
 
     @exec = require('child_process').exec
 
-    command = "docker run --env-file=.env -v /root/.ssh/aws-ec2-tokyo.pem:/root/.ssh/aws-ec2-tokyo.pem quay.io/wantedly/sap:latest #{prefix}"
+    command = "docker run koudaiii/hello-world #{prefix}"
     res.send "Command: #{command}"
     @exec command, (error, stdout, stderr) ->
       if error?
